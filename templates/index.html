@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detector de URLs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🔎 Detector de URLs Maliciosas</h1>
+        <form method="POST">
+            <label for="url">Introduce una URL:</label>
+            <input type="text" name="url" id="url" required placeholder="https://ejemplo.com">
+            <button type="submit">Analizar</button>
+        </form>
+
+        {% if url %}
+            <div class="result">
+                <h2>Resultado del análisis:</h2>
+                <p><strong>URL:</strong> {{ url }}</p>
+                <ul>
+                    {% for r in resultado %}
+                        <li>{{ r }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h3>Características extraídas:</h3>
+                <table>
+                    <tr><th>Característica</th><th>Valor</th></tr>
+                    {% for clave, valor in caracteristicas.items() %}
+                        <tr>
+                            <td>{{ clave.replace("_", " ").capitalize() }}</td>
+                            <td>{{ valor }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
