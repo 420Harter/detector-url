@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 import re
 from urllib.parse import urlparse
+import os  # <--- Añadido para Render
 
 app = Flask(__name__)
 
@@ -54,4 +55,5 @@ def index():
     return render_template("index.html", url=url, resultado=resultado, caracteristicas=caracteristicas)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
