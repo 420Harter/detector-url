@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 import re
 from urllib.parse import urlparse
-import os  # <--- Añadido para Render
+import os
 
 app = Flask(__name__)
 
